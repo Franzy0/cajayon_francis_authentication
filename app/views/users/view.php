@@ -6,53 +6,121 @@
     <title>Users</title>
     <style>
         * { box-sizing: border-box; }
-        body { margin: 0; font-family: Arial, Helvetica, sans-serif; color: #1a1a1a; background: linear-gradient(135deg, #ffffff, #f8f8f8); }
-        .bg-decor { position: fixed; inset: 0; z-index: -1; pointer-events: none; background:
-            radial-gradient(600px 600px at 0% 0%, rgba(0,0,0,.08), transparent 60%),
-            radial-gradient(600px 600px at 100% 0%, rgba(0,0,0,.06), transparent 60%),
-            radial-gradient(600px 600px at 0% 100%, rgba(0,0,0,.04), transparent 60%),
-            radial-gradient(600px 600px at 100% 100%, rgba(0,0,0,.06), transparent 60%);
-            animation: floatBg 16s ease-in-out infinite alternate; }
-        .container { max-width: 960px; margin: 40px auto; padding: 0 16px; }
-        .card { background: #ffffff; border: 2px solid #e0e0e0; border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,.12), 0 4px 12px rgba(0,0,0,.08); overflow: hidden; transform: translateY(8px); opacity: 0; animation: cardIn .6s ease-out forwards; }
-        .card-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding: 16px 20px; border-bottom: 2px solid #e0e0e0; background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%); }
-        .title { margin: 0; font-size: 22px; letter-spacing: .2px; color: #000000; font-weight: 700; }
-        .actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-        .left-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+        body { 
+            margin: 0; 
+            font-family: Arial, Helvetica, sans-serif; 
+            background: #121212; /* Dark background */
+            color: #fff; 
+        }
+
+        .container { max-width: 1080px; margin: 40px auto; padding: 0 16px; }
+
+        .card { 
+            background: #181818; 
+            border-radius: 14px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,.7); 
+            overflow: hidden; 
+            animation: fadeIn .6s ease-out forwards; 
+        }
+
+        .card-header { 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            flex-wrap: wrap; 
+            gap: 12px; 
+            padding: 20px; 
+            border-bottom: 2px solid #282828; 
+            background: #181818;
+        }
+
+        .title { 
+            margin: 0; 
+            font-size: 22px; 
+            font-weight: bold; 
+            color: #fff;
+        }
+
+        .actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .left-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
         .search-box { display: flex; gap: 8px; }
-        .search-input { padding: 10px 14px; border-radius: 10px; border: 2px solid #ccc; font-size: 14px; min-width: 220px; }
-        .btn { display: inline-block; padding: 10px 14px; text-decoration: none; border-radius: 10px; border: 2px solid transparent; font-size: 14px; font-weight: 600; box-shadow: 0 2px 8px rgba(0,0,0,.15); transition: transform .08s ease, box-shadow .2s ease, background-color .2s ease; cursor: pointer; }
-        .btn:active { transform: translateY(1px); box-shadow: 0 0 0 rgba(0,0,0,0); }
-        .btn-primary { background: linear-gradient(135deg, #000000 0%, #333333 100%); color: white; border-color: #000000; }
-        .btn-primary:hover { background: linear-gradient(135deg, #333333 0%, #555555 100%); border-color: #333333; }
-        .btn-edit { background: linear-gradient(135deg, #333333 0%, #555555 100%); color: white; border-color: #333333; }
-        .btn-edit:hover { background: linear-gradient(135deg, #555555 0%, #777777 100%); border-color: #555555; }
-        .btn-delete { background: linear-gradient(135deg, #e53935 0%, #f44336 100%); color: white; border-color: #e53935; }
-        .btn-delete:hover { background: linear-gradient(135deg, #f44336 0%, #ef5350 100%); border-color: #f44336; }
-        .btn-logout { background: linear-gradient(135deg, #43a047 0%, #66bb6a 100%); color: white; border-color: #43a047; }
-        .btn-logout:hover { background: linear-gradient(135deg, #388e3c 0%, #4caf50 100%); border-color: #388e3c; }
-        .table-wrapper { overflow-x: auto; animation: fadeIn .6s ease .15s both; background: #ffffff; }
+        .search-input { 
+            padding: 10px 14px; 
+            border-radius: 8px; 
+            border: none; 
+            background: #282828; 
+            color: #fff; 
+            font-size: 14px; 
+            min-width: 220px;
+        }
+        .search-input:focus { outline: 2px solid #1db954; }
+
+        .btn { 
+            display: inline-block; 
+            padding: 10px 16px; 
+            border-radius: 25px; 
+            font-size: 14px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            border: none; 
+            transition: transform .2s ease, background-color .2s ease; 
+            text-decoration: none; 
+        }
+        .btn:hover { transform: scale(1.05); }
+
+        .btn-primary { background: #1db954; color: white; }
+        .btn-primary:hover { background: #1ed760; }
+
+        .btn-edit { background: #333; color: #fff; }
+        .btn-edit:hover { background: #444; }
+
+        .btn-delete { background: #e53935; color: #fff; }
+        .btn-delete:hover { background: #f44336; }
+
+        .btn-logout { background: #555; color: #fff; }
+        .btn-logout:hover { background: #777; }
+
+        .table-wrapper { overflow-x: auto; animation: fadeIn .6s ease .15s both; background: #181818; }
         table { border-collapse: collapse; width: 100%; }
-        th, td { border-bottom: 1px solid #e0e0e0; padding: 14px 16px; text-align: left; }
-        th { background: linear-gradient(135deg, #f5f5f5 0%, #f0f0f0 100%); font-weight: 600; color: #333333; }
-        tr { transition: background .2s ease; }
-        tr:hover td { background: #f9f9f9; }
-        .empty { padding: 24px; text-align: center; color: #333333; font-style: italic; }
-        .action-buttons { display: flex; gap: 8px; align-items: center; }
+        th, td { padding: 14px 16px; text-align: left; border-bottom: 1px solid #333; }
+        th { background: #282828; color: #bbb; }
+        td { color: #eee; }
+        tr:hover td { background: #222; }
 
-        .pagination { list-style: none; display: flex; justify-content: center; gap: 6px; margin: 20px 0; padding: 0; }
-        .pagination li a { display: block; padding: 8px 14px; border: 1px solid #ccc; border-radius: 8px; text-decoration: none; font-weight: 600; color: #333; background: #f9f9f9; transition: background .2s ease; }
-        .pagination li a:hover { background: #e0e0e0; }
-        .pagination li.active a { background: #000; color: white; border-color: #000; }
-        .pagination li.disabled a { color: #aaa; background: #f5f5f5; border-color: #ddd; pointer-events: none; }
+        .empty { padding: 24px; text-align: center; color: #bbb; font-style: italic; }
 
-        @keyframes cardIn { to { transform: translateY(0); opacity: 1; } }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes floatBg { 0% { background-position: 0% 0%, 100% 0%, 0% 100%, 100% 100%; } 100% { background-position: 10% 5%, 90% 10%, 5% 90%, 95% 95%; } }
+        .action-buttons { display: flex; gap: 8px; }
+
+        .pagination { 
+            list-style: none; 
+            display: flex; 
+            justify-content: center; 
+            gap: 6px; 
+            margin: 20px 0; 
+            padding: 0; 
+        }
+        .pagination li a { 
+            display: block; 
+            padding: 8px 14px; 
+            border-radius: 8px; 
+            text-decoration: none; 
+            font-weight: bold; 
+            color: #fff; 
+            background: #282828; 
+            transition: background .2s ease; 
+        }
+        .pagination li a:hover { background: #333; }
+        .pagination li.active a { background: #1db954; color: white; }
+        .pagination li.disabled a { color: #555; background: #222; pointer-events: none; }
+
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(10px);} 
+            to { opacity: 1; transform: translateY(0);} 
+        }
     </style>
 </head>
 <body>
-<div class="bg-decor"></div>
 <div class="container">
     <div class="card">
         <div class="card-header">
@@ -72,7 +140,7 @@
                     <?php endif; ?>
                 </div>
 
-                <!-- Logout button on the right -->
+                <!-- Logout button -->
                 <a href="<?= site_url('auth/logout') ?>" class="btn btn-logout">Logout</a>
             </div>
         </div>

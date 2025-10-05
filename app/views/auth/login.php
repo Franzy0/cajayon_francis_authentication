@@ -12,85 +12,77 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
     body { 
         margin: 0; 
         font-family: Arial, sans-serif; 
-        color: #1a1a1a; 
-        background: linear-gradient(135deg, #ffffff, #f8f8f8); 
+        color: #fff; 
+        background: #121212; /* Spotify-like dark background */
         display: flex; 
         justify-content: center; 
         align-items: center; 
         height: 100vh; 
     }
 
-    /* Background decoration */
-    .bg-decor {
-        position: fixed;
-        inset: 0;
-        z-index: -1;
-        pointer-events: none;
-        background:
-            radial-gradient(600px 600px at 0% 0%, rgba(0,0,0,.08), transparent 60%),
-            radial-gradient(600px 600px at 100% 0%, rgba(0,0,0,.06), transparent 60%),
-            radial-gradient(600px 600px at 0% 100%, rgba(0,0,0,.04), transparent 60%),
-            radial-gradient(600px 600px at 100% 100%, rgba(0,0,0,.06), transparent 60%);
-        animation: floatBg 16s ease-in-out infinite alternate;
-    }
-
     /* Card container */
     .card {
-        background: #ffffff; 
-        border: 2px solid #e0e0e0; 
+        background: #181818; /* Dark gray card */
         border-radius: 14px; 
-        box-shadow: 0 10px 30px rgba(0,0,0,.12), 0 4px 12px rgba(0,0,0,.08); 
-        padding: 30px; 
-        width: 350px; 
+        box-shadow: 0 10px 30px rgba(0,0,0,.7); 
+        padding: 40px 30px; 
+        width: 360px; 
         text-align: center; 
-        animation: cardIn .6s ease-out forwards;
+        animation: fadeIn .6s ease-out forwards;
     }
 
     .card-header h2 {
         margin: 0;
-        font-size: 24px;
-        color: #000000;
-        margin-bottom: 20px;
+        font-size: 26px;
+        color: #fff;
+        margin-bottom: 25px;
     }
 
     input {
         width: 100%; 
-        padding: 10px 14px; 
-        margin: 8px 0; 
-        border: 1px solid #ccc; 
-        border-radius: 10px; 
+        padding: 12px 14px; 
+        margin: 10px 0; 
+        border: none; 
+        border-radius: 8px; 
         font-size: 14px;
+        background: #282828; 
+        color: #fff;
+    }
+
+    input:focus {
+        outline: 2px solid #1db954; /* Spotify green */
     }
 
     .btn-primary {
         width: 100%;
-        padding: 10px 14px;
-        background: linear-gradient(135deg, #000000 0%, #333333 100%);
+        padding: 12px 14px;
+        background: #1db954;
         color: white;
         border: none;
-        border-radius: 10px;
+        border-radius: 25px;
         font-weight: 600;
         cursor: pointer;
-        transition: background 0.3s ease;
-        margin-top: 10px;
+        transition: transform 0.2s ease, background 0.3s ease;
+        margin-top: 15px;
     }
 
     .btn-primary:hover {
-        background: linear-gradient(135deg, #333333 0%, #555555 100%);
+        background: #1ed760;
+        transform: scale(1.05);
     }
 
     .message {
         margin-top: 15px;
         font-size: 14px;
-        color: red;
+        color: #f44336;
     }
 
     .message.success {
-        color: green;
+        color: #4caf50;
     }
 
     a {
-        color: #43a047; 
+        color: #1db954; 
         text-decoration: none; 
         font-weight: bold;
     }
@@ -99,15 +91,13 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
         text-decoration: underline;
     }
 
-    @keyframes cardIn { to { transform: translateY(0); opacity: 1; } }
-    @keyframes floatBg { 
-        0% { background-position: 0% 0%, 100% 0%, 0% 100%, 100% 100%; } 
-        100% { background-position: 10% 5%, 90% 10%, 5% 90%, 95% 95%; } 
+    @keyframes fadeIn { 
+        from { opacity: 0; transform: translateY(10px);} 
+        to { opacity: 1; transform: translateY(0);} 
     }
 </style>
 </head>
 <body>
-<div class="bg-decor"></div>
 <div class="card">
     <div class="card-header">
         <h2>Login</h2>
